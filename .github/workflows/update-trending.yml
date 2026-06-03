@@ -23,7 +23,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install scrapling jinja2 curl_cffi browserforge
+          pip install scrapling jinja2 curl_cffi browserforge playwright
           python -c "from scrapling.fetchers import Fetcher; print('Scrapling OK')"
 
       - name: Scrape GitHub Trending
