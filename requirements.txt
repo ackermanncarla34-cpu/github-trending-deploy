@@ -1,0 +1,2 @@
+scrapling>=0.4.0
+jinja2>=3.0
