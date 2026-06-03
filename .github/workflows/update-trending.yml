@@ -23,20 +23,19 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install scrapling jinja2
-          # Verify installation
+          pip install scrapling jinja2 curl_cffi browserforge
           python -c "from scrapling.fetchers import Fetcher; print('Scrapling OK')"
 
       - name: Scrape GitHub Trending
+        working-directory: github-trending-deploy
         run: |
-          cd github-trending-deploy
           python scrape_trending.py
 
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add github-trending-deploy/index.html github-trending-deploy/_cached_trending.html
+          git add github-trending-deploy/
           git diff --quiet && git diff --staged --quiet || \
             git commit -m "📅 Auto-update GitHub Trending ($(date -u '+%Y-%m-%d'))"
           git push
